@@ -12,11 +12,22 @@ class ProjectController extends Controller
     public function index()
     {
 
-        $projects = Project::all();
+        // $projects = Project::all();
+        $projects = Project::with(['type', 'technologies'])->paginate(12);
 
         return response()->json([
             'success' => true,
             'results' => $projects
+        ]);
+    }
+
+    public function show($slug)
+    {
+        $project = Project::with(['type', 'technologies'])->where('slug', $slug)->first();
+
+        return response()->json([
+            'success' => true,
+            'project' => $project
         ]);
     }
 }

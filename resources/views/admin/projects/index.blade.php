@@ -70,51 +70,50 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
-                                <div class="form-check float-end m-3">
-                                    <a href="{{ route('admin.projects.index') }}">card </a>
+                                <a href="{{ route('admin.projects.index') }}">card </a>
 
-                                </div>
-                                <div class="form-check float-end mt-3">
-                                    <a href="{{ route('admin.index_table') }}">Tabella </a>
+                            </div>
+                            <div class="form-check float-end mt-3">
+                                <a href="{{ route('admin.index_table') }}">Tabella </a>
 
-                                </div>
                             </div>
-                            <div class="col-12">
-                                <h2 class="text-center text-white mt-3">Portfolio</h2>
-                            </div>
-                            <div class="row">
-                                @foreach ($projects as $project)
-                                    <div class="col-2 py-5">
-                                        <div class="card text-center">
-                                            @if ($project->cover_image != null)
-                                                <div class="my-3">
-                                                    <img src="{{ asset('/storage/' . $project->cover_image) }}"
-                                                        alt="{{ $project->titolo }}">
-                                                </div>
-                                            @else
-                                                <img src="{{ asset('/img/folder.png') }}" alt="{{ $project->titolo }}">
-                                            @endif
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{ $project->titolo }}</h5>
-                                                <h6> {{ $project->type_id ? $project->type->nome : 'Nessuna categoria' }}
-                                                </h6>
-                                                <h6>
-                                                    @forelse ($project->technologies as $technology)
-                                                        #{{ $technology->nome }}
-                                                    @empty
-                                                        nessuna tecnologia
-                                                    @endforelse
-                                                </h6>
-                                                {{-- <h6> {{ $project->techonology->id ? $project->techonology->nome : 'Nessuna tecnologia' }}
+                        </div>
+                        <div class="col-12">
+                            <h2 class="text-center text-white mt-3">Portfolio</h2>
+                        </div>
+                        <div class="row">
+                            @foreach ($projects as $project)
+                                <div class="col-2 py-5">
+                                    <div class="card text-center">
+                                        @if ($project->cover_image != null)
+                                            <div class="my-3">
+                                                <img src="{{ asset('/storage/' . $project->cover_image) }}"
+                                                    alt="{{ $project->titolo }}">
+                                            </div>
+                                        @else
+                                            <img src="{{ asset('storage/img/folder.png') }}" alt="{{ $project->titolo }}">
+                                        @endif
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $project->titolo }}</h5>
+                                            <h6> {{ $project->type_id ? $project->type->nome : 'Nessuna categoria' }}
+                                            </h6>
+                                            <h6>
+                                                @forelse ($project->technologies as $technology)
+                                                    #{{ $technology->nome }}
+                                                @empty
+                                                    nessuna tecnologia
+                                                @endforelse
+                                            </h6>
+                                            {{-- <h6> {{ $project->techonology->id ? $project->techonology->nome : 'Nessuna tecnologia' }}
                                                 </h6> --}}
-                                                <p class="card-text">{{ Str::limit($project->descrizione, 30, '...') }}</p>
-                                                <div class="d-flex mt-4">
-                                                    <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}"
-                                                        class="btn btn-sm btn-primary">Dettagli</a>
-                                                    <a href="{{ route('admin.projects.edit', $project->id) }}"
-                                                        class="btn btn-sm btn-warning ms-2">Modifica</a>
-                                                </div>
-                                                {{-- <form
+                                            <p class="card-text">{{ Str::limit($project->descrizione, 30, '...') }}</p>
+                                            <div class="d-flex mt-4">
+                                                <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}"
+                                                    class="btn btn-sm btn-primary">Dettagli</a>
+                                                <a href="{{ route('admin.projects.edit', $project->id) }}"
+                                                    class="btn btn-sm btn-warning ms-2">Modifica</a>
+                                            </div>
+                                            {{-- <form
                                                     action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}"
                                                     method="post"
                                                     onsubmit="return confirm('Sei sicuro di voler eliminare questo progetto?')">
@@ -123,17 +122,17 @@
                                                     <button type="submit"
                                                         class="btn btn-sm btn-danger mt-3">Elimina</button>
                                                 </form> --}}
-                                                <button class="btn btn-sm btn-danger mt-3" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_delete_{{ $project->id }}">Elimina</button>
-                                                @include('admin.projects.modal')
-                                            </div>
+                                            <button class="btn btn-sm btn-danger mt-3" data-bs-toggle="modal"
+                                                data-bs-target="#modal_delete_{{ $project->id }}">Elimina</button>
+                                            @include('admin.projects.modal')
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
